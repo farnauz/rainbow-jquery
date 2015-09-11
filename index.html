@@ -1,0 +1,123 @@
+<html>
+	<head>
+	  <style type="text/css">
+	      body {background-color:skyblue; color:gray;}
+	      .rainbow-animation {
+	          width: 1800px;
+	          height: 12px;
+	          position: relative;
+	          animation-name: rainbow;
+	          animation-duration: 9s;
+	          animation-iteration-count: infinite;
+	          animation-direction:alternate;
+	      }
+	      @keyframes rainbow {
+	          0% {left:0px; top:0px;}
+	          100% {background-color:transparent; left:600px; top:0px;}
+	      }
+	      .red{background-color:red;}
+	      .orange{background-color:orange;}
+	      .yellow{background-color:yellow;}
+	      .lightgreen{background-color:lightgreen;color:dimgray;}
+	      .aqua{background-color:aqua;}
+	      .lightblue{background-color:lightblue;}
+	      .violet{background-color:violet;}
+	      .pink{background-color:pink;}
+	    </style>
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>	
+	    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+	    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		
+		<script type="text/javascript">
+			$(document).ready(function(){
+			    $("#double-rainbow-div").hide();
+			    $('input[type="checkbox"]').click(function(){
+			        if($(this).attr("value")=="double"){
+			            $("#double-rainbow-div").toggle();
+			        }
+			    });
+
+			    $("#rainbow-div").click(function(){
+			    	$("#rainbow-div").effect( "bounce", {times:3}, 700 );
+			    });
+
+			    $("#double-rainbow-div").click(function(){
+			    	$("#double-rainbow-div").effect( "bounce", {times:3}, 700 );
+			    });
+
+				function displayColor(className) {		
+			    	var split = className.split(" ");
+			    	var color = split[1];
+			    	/*$("#colorName").text(color+"!");*/
+			    	$("#colorText").text("You clicked on ");
+			    	$("#colorName").text(color+"!").css("color", color);
+    			}
+
+				function animateColorName(){
+					var colorDisplay = $("#colorDisplay");  
+			        colorDisplay.animate({left: '100px'}, "slow");
+			        colorDisplay.animate({fontSize: '3em'}, "slow");
+					colorDisplay.animate({left: '0px'}, "slow");
+			        colorDisplay.animate({fontSize: '1em'}, "slow");
+				}
+
+			    $(".rainbow-animation").click(function(){
+			    	var className = this.className;
+
+			    	displayColor(className);
+			    	animateColorName();
+				});
+			});
+		</script>
+	</head>
+	<body>
+	  <div class="row">
+	    	<div class="col-xs-12 col-sm-12">
+				<br/>
+			    <div id="rainbow-div"> 
+			      <div class="rainbow-animation red"></div>
+			      <div class="rainbow-animation orange"></div>
+			      <div class="rainbow-animation yellow"></div>
+			      <div class="rainbow-animation lightgreen">
+			      	<small>Click me to make me bounce</small>
+			      </div>
+			      <div class="rainbow-animation aqua"></div>
+			      <div class="rainbow-animation lightblue"></div>
+			      <div class="rainbow-animation violet"></div>
+			      <div class="rainbow-animation pink"></div>
+			    </div>
+		    </div>
+	    </div>
+	  	<div class="row">
+		    <div class="col-xs-12 col-sm-12">
+		    	<br/>
+			    <div id="double-rainbow-div">
+				  <div class="rainbow-animation yellow"></div>
+			      <div class="rainbow-animation pink"></div>
+			      <div class="rainbow-animation violet"></div>
+			      <div class="rainbow-animation lightblue"></div>
+			      <div class="rainbow-animation aqua">
+			      	<small>Click me to make me bounce</small>
+			      </div>
+			      <div class="rainbow-animation lightgreen"></div>
+			      <div class="rainbow-animation orange"></div>
+			      <div class="rainbow-animation red"></div> 
+			    </div>
+		    </div>
+	    </div>
+	   	<div class="row">
+		    <div class="col-xs-12 col-sm-12">
+			    <center>
+			    	<br/> 
+			        <label><input type="checkbox" name="colorCheckbox" value="double">Double Rainbow</label>
+			        <br/><br/> 
+			    	<div id="colorDisplay">
+			    		<span id="colorText"></span>
+			    		<span id="colorName"></span>
+			    	</div>
+			    </center>
+		    </div>
+	    </div>
+	</body>
+</html>
